@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    {
+      var a = 1;
+    }
+    console.log(a); // 1  var定义的变量没有块级作用域
+
+  function demo() {
+      var b = 1;
+    }
+    console.log(b); // err:  b is not defined
+  </script>
+</body>
+</html>

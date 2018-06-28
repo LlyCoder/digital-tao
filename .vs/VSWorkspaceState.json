@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\server",
+    "\\server\\bin",
+    "\\src",
+    "\\src\\components",
+    "\\src\\router",
+    "\\src\\views",
+    "\\src\\views\\User"
+  ],
+  "SelectedNode": "\\src\\views\\Evaluation.vue",
+  "PreviewInSolutionExplorer": false
+}

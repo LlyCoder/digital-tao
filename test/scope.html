@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" value="111">
+   <input type="text">
+   <input type="text">
+ 
+   <script>
+    var input = document.getElementsByTagName('input');
+
+    console.log(input);
+        for(var i=0; i<input.length; ++i) {
+            input[i].onclick = function() {
+                console.log(i); // 事实上无论点击哪个input都会打印出3
+            }
+        }
+    //由于js变量作用域的问题，上面代码的函数体内没有定义i，所以就会向外查找变量i，此刻存在循环完成的i，此刻等于3
+
+    //解决方案：
+    //1.使用闭包  
+    for (var i=0; i < input.length; ++i) {
+        var a = function(k) {
+            input[k].onclick = function() {
+                console.log(k)
+            }
+        }
+        a(i); // 0, 1, 2
+    }
+    //2.使用let使变量块级作用域
+     for (let i = 0; i < input.length; ++i) {
+            input[i].onclick = function () {
+                console.log(i); // 正常
+            }
+    }
+   </script>
+</body>
+</html>

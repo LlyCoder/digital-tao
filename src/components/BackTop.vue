@@ -33,7 +33,6 @@
             },
             handelScroll() {
                 this.scrollTop = document.documentElement.scrollTop;
-                console.log(document.documentElement.scrollTop)
             }
         }
     }
