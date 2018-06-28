@@ -1,6 +1,8 @@
 # digital_tao
 
 > A Vue.js project
+> 未完善，后端准备用koa2重构，前端还有很多坑
+> 每隔两个月看自己代码都是不忍直视，比如现在，喜欢这样的感觉。重构准备中。。。
 
 ## Build Setup
 
