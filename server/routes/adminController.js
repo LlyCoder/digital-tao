@@ -3,10 +3,10 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Admin = require('./../models/adminUser')
 const fs = require('fs')
-const config = require('../config')
 const jwt = require('jsonwebtoken')
-const Goods =require('../models/goods')
+const config = require('../config')
 const Articles = require('../models/article')
+const Goods =require('../models/goods')
 const verify = require('../middleware/verify')
 
 router.post('/login', async(req,res) => {
