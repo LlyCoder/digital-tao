@@ -39,14 +39,14 @@ router.post('/login', async(req,res) => {
 
 
 //单条/批量删除食物
-router.post('/delGoods', verify, async(req, red, next) => {
-    let delList = req.body.delList;
-    Goods.remove({_id: {$in: delList}}, (err) => {
-        if(err) {
-            console.log(err)
-        }
-    })
-})
+// router.post('/delGoods', verify, async(req, red, next) => {
+//     let delList = req.body.delList;
+//     Goods.remove({_id: {$in: delList}}, (err) => {
+//         if(err) {
+//             console.log(err)
+//         }
+//     })
+// })
 //删除文章
 router.post('/delArticles', verify, async (req, res, next) => {
     let delList = req.body.delList;
@@ -61,7 +61,7 @@ router.post('/delArticles', verify, async (req, res, next) => {
     })
 });
 
-//获取审核列表
+//获取文章审核列表
 router.get('/getCheckList', verify, async (req,res,next) => {
     let doc = await Articles.find({ status: 'untreated' }).populate('publisher', 'userName');
     if(doc) {
@@ -98,6 +98,42 @@ router.post('/updateStatus', verify, (req, res, next) => {
     }
 })
 
+//获取商品审核列表
+router.get('/getGsCList', verify, async (req, res, next) => {
+    let doc = await Goods.find({ status: 'untreated' }).populate('owner', 'userName');
+    if (doc) {
+        res.json({
+            result: doc
+        })
+    }
+})
+
+//通过/退回商品发布申请
+router.post('/updateGoodStatus', verify, (req, res, next) => {
+    let id = req.body.id;
+    let option = req.body.option;
+    if (option == 'pass') {
+        Goods.update({ _id: id }, { status: 'pass' }, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({
+                    status: 'suc'
+                })
+            }
+        })
+    } else if (option == 'ban') {
+        Goods.update({ _id: id }, { status: 'ban' }, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({
+                    status: 'suc'
+                })
+            }
+        })
+    }
+})
 
 //update admin info 
 
@@ -174,6 +210,139 @@ router.post('/deladmin', verify, (req,res) => {
         } else {
             res.json({
                 status: 'suc'
+            })
+        }
+    })
+})
+
+//getGoodsList
+
+router.get('/getGoodsList', verify, (req,res) => {
+    let page = parseInt(req.query.page);
+    let pageSize = parseInt(req.query.pageSize);
+    let skip = (page - 1) * pageSize;
+    let totalCount = 0;
+    // Goods.count({ status: 'pass' }, (err, count) => {
+    //     totalCount = count;
+    // })
+    let goodsModel = Goods.find({ status: 'pass' }).populate('owner', 'userName');
+    goodsModel.skip(skip).limit(pageSize).sort({ 'publishDate': -1 }).exec((err, doc) => {
+        if (err) {
+            res.json({
+                status: '1',
+                msg: err.message,
+                result: ''
+            });
+        } else {
+            res.json({
+                status: '0',
+                msg: '',
+                result: {
+                    count: doc.length,
+                    list: doc
+                }
+            });
+        }
+    })
+})
+
+//delGoods
+router.post('/delGoods', verify, async (req, res, next) => {
+    let delList = req.body.delList;
+    await Goods.remove({ _id: { $in: delList } }, (err) => {
+        if (err) {
+            console.log(err)
+        } else {;
+            res.json({
+                status: 'suc'
+            })
+        }
+    })
+});
+
+// admin updateArticle
+router.post('/updateArticle', verify, async (req,res, next) => {
+    let articleId = req.body.articleId,
+        articleTitle = req.body.articleTitle,
+        abstract = req.body.abstract,
+        articleImg = req.body.articleImg,
+        content = req.body.content,
+        updateDate = Date(),
+        status = 'pass';
+    await Articles.findOneAndUpdate({ _id: articleId }, { articleTitle, abstract, articleImg, content, updateDate, status }, (err, doc) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({
+                status: '0',
+                result: 'suc'
+            })
+        }
+    })
+})
+
+// admin upgoods
+router.post('/updateGoods/:gid', verify, (req, res, next) => {
+    const gid = req.params.gid;
+    const owner = req.cookies.userObjectId,
+        productName = req.body.goodsName,
+        salePrice = req.body.salePrice,
+        productImage = req.body.productImage,
+        sellerIntro = req.body.sellerIntro,
+        updateDate = Date(),
+        status = 'pass';
+    previewImg = req.body.previewImg;
+    if (previewImg.length == 0) {
+        Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro, updateDate, status }, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({
+                    status: '0',
+                    result: 'suc'
+                })
+            }
+        })
+    } else {
+        Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro, updateDate, previewImg }, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({
+                    status: '0',
+                    result: 'suc'
+                })
+            }
+        })
+    }
+
+}) 
+
+//admin publish article
+router.post('/postArticle', verify, async (req, res) => {
+    let articleTitle = req.body.articleTitle,
+        abstract = req.body.abstract,
+        articleImg = req.body.articleImg,
+        publisher = "5b914f7608ec77313411c930",
+        status =  'pass',
+        content = req.body.content;
+    let article = await new Articles({
+        articleTitle,
+        abstract,
+        articleImg,
+        content,
+        publisher,
+        status,
+        publishDate: new Date()
+    });
+    article.save(err => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json({
+                status: '0',
+                msg: '',
+                result: 'suc'
             })
         }
     })

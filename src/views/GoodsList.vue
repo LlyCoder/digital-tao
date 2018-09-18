@@ -240,6 +240,7 @@ export default {
         res = res.data;
         if(res.status == '0') {
           this.mdShowCart = true;
+          //响应正常，改变store
           this.$store.commit("updateCartCount",1);
         } else {
           this.mdShow = true;

@@ -47,7 +47,7 @@
             </el-dialog>
           </el-form-item>
         </el-form>
-        <el-button type="primary" round @click="publishGoods">发布我的闲置</el-button>
+        <el-button type="primary" round @click="publishGoods">提交发布申请</el-button>
         <!-- <el-button type="primary" round @click="test">测试</el-button> -->
       </div>
     </div>
@@ -108,9 +108,10 @@ export default {
         let res = result.data;
         if(res.status == '0') {
            this.$message({
-            message: '恭喜你，发布闲置成功',
+            message: '申请已提交，请等待管理员审核',
             type: 'success'
           });
+          this.$router.push({path: '/user/mySale'});
         }
       })
     },

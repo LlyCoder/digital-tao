@@ -3,14 +3,17 @@
         <el-table ref="multipleTable" :data="articleList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="60">
             </el-table-column>
-            <el-table-column label="文章标题" prop="articleTitle" width="240">
+            <el-table-column label="文章标题" prop="articleTitle" width="210">
             </el-table-column>
             <el-table-column label="文章作者" prop="publisher.userName" width="250" align="center">
             </el-table-column>
-            <el-table-column label="创建日期" width="120">
+            <el-table-column label="创建日期" width="140">
                 <template slot-scope="scope">{{ scope.row.publishDate | simpleDate}}</template>
             </el-table-column>
-            <el-table-column label="点赞次数" prop="like" width="190" align="center">
+            <el-table-column label="最近更新" width="150">
+                <template slot-scope="scope">{{ scope.row.updateDate | timeAgo}}</template>
+            </el-table-column>
+            <el-table-column label="点赞次数" prop="like" width="80" align="center">
             </el-table-column>
             <el-table-column label="操作"  width="190" align="center" fixed="right">
                 <template slot-scope="scope">

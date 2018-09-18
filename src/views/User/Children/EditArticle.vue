@@ -25,7 +25,7 @@
                 </el-form-item>
             </el-form>
             <div class="upload_btn">
-                <el-button type="primary" round @click="updateArticle">从新发布</el-button>
+                <el-button type="primary" round @click="updateArticle">从新提交</el-button>
             </div>
         </div>
         <nav-footer></nav-footer>
@@ -78,7 +78,7 @@
                     if(res.status == '0') {
                         this.$message({
                             showClose: true,
-                            message: '恭喜你，发布成功',
+                            message: '已提交发布申请，等待管理员审核',
                             type: 'success'
                         });
                         this.$router.push('/user/myArticle');

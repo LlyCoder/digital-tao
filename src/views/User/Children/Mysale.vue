@@ -8,6 +8,7 @@
                     <div class="proName">{{item.productName}}</div>
                     <div style="color: red">￥{{item.salePrice}}</div>
                     <div>{{item.publishDate | toDate}}</div>
+                    <div :class="{pass: item.status=='pass', ban: item.status=='ban'}">{{item.status | statusTrans}}</div>
                     <el-row>
                       <el-button type="primary" icon="el-icon-edit" circle round @click="editSale(item.productId)"></el-button>
                       <el-button type="danger" icon="el-icon-delete" circle round @click="delSale(item._id)"></el-button>
@@ -63,6 +64,22 @@ export default {
           })
         }
     },
+    filters: {
+        statusTrans: (status) => {
+            switch (status) {
+                case 'pass':
+                    return '通过';
+                    break;
+                case 'ban':
+                    return '未通过';
+                    break;
+                case 'untreated':
+                    return '未处理';
+                    break;
+            }
+
+        }
+    },
     components: {
         Shelf
     }
@@ -86,6 +103,12 @@ export default {
 }
 .proName {
     width: 100px;
+}
+.pass {
+    color: #2ad62a;
+}
+.ban {
+    color: red;
 }
    
 </style>

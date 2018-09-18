@@ -14,7 +14,7 @@
         </el-table>
         <el-button type="primary" style="margin-top: 15px;" @click="dialogFormVisible=true">新增管理员</el-button>
     
-        <el-dialog title="收货地址" :visible="dialogFormVisible" :modal-append-to-body="false" :show-close="false">
+        <el-dialog title="新增管理员" :visible="dialogFormVisible" :modal-append-to-body="false" :show-close="false">
             <el-form :model="form">
                 <el-form-item label="管理员名称" :label-width="formLabelWidth">
                     <el-input v-model="form.name" auto-complete="off"></el-input>

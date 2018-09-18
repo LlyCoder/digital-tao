@@ -31,6 +31,10 @@ import EditArticleList from '@/views/Admin/components/EditArticle'
 import EditAr from '@/views/Admin/components/EditAr'
 import InfoSetting from '@/views/Admin/components/InfoSetting'
 import AdminLists from '@/views/Admin/components/AdminLists'
+import GoodsCheckList from '@/views/Admin/components/goodsCheckList'
+import GoodsListEdit from '@/views/Admin/components/goodsListEdit'
+import EditGoSingle from '@/views/Admin/components/EditGoSingle'
+import PublishArticle from '@/views/Admin/components/PublishArticle'
 import Test from '@/views/test/test'
 import A from '@/views/test/a'
 Vue.use(Router)
@@ -192,6 +196,22 @@ export default new Router({
         {
           path: 'editAr',
           component: EditAr
+        },
+        {
+          path: 'goodsCheckLIst',
+          component: GoodsCheckList
+        },
+        {
+          path: 'editGoods',
+          component: GoodsListEdit
+        },
+        {
+          path: 'editGoSingle',
+          component: EditGoSingle
+        },
+        {
+          path: 'publishArticle',
+          component: PublishArticle
         }
       ],
       redirect: '/admin/checkList'

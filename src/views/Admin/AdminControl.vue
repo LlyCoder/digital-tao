@@ -28,19 +28,29 @@
                     <span>文章管理</span>
                 </template>
                 <el-menu-item-group>
-                    <template slot="title">分组一</template>
                     <el-menu-item index="1-1" @click="$router.push('checkLIst')">审核列表</el-menu-item>
-                    <el-menu-item index="1-2" @click="$router.push('editArticle')">文章刘表</el-menu-item>
+                    <el-menu-item index="1-2" @click="$router.push('editArticle')">文章列表</el-menu-item>
+                    <el-menu-item index="1-3" @click="$router.push('publishArticle')">发布文章</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu>
+                <template slot="title">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                    &nbsp;&nbsp;
+                    <span>商品管理</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="3-1" @click="$router.push('goodsCheckLIst')">审核列表</el-menu-item>
+                    <el-menu-item index="3-2" @click="$router.push('editGoods')">商品列表</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
                 <template slot="title">
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
-                     &nbsp;&nbsp;
+                    &nbsp;&nbsp;
                     <span>信息维护</span>
                 </template>
                 <el-menu-item-group>
-                    <template slot="title">分组一</template>
                     <el-menu-item index="2-1" @click="$router.push('InfoSetting')">修改资料</el-menu-item>
                     <el-menu-item index="2-2" @click="$router.push('adminLists')">管理员列表</el-menu-item>
                 </el-menu-item-group>

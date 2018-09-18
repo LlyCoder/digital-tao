@@ -12,7 +12,9 @@ var productSchema =  new Schema({
   "checked": String,
   "previewImg": [],
   "publishDate": Date,
-  "sellerIntro": String
+  "updateDate": {type: Date, default: Date.now()},
+  "sellerIntro": String,
+  "status": { type: String, default: 'untreated' }
 });
 //模型名称故意为 Good mongodb为自动最佳s进行集合查询，所以创建集合名称末尾最好加s，防止踩坑
 module.exports = mongoose.model('Good',productSchema);

@@ -6,6 +6,7 @@ const articleSchema = new Schema({
     articleTitle: String,
     publisher: {type: ObjectId, ref: 'User'},
     publishDate: {type: Date, default: Date.now()},
+    updateDate: {type: Date, default: Date.now()},
     articleImg: String,
     abstract: String,
     content: String,

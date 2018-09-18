@@ -31,7 +31,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      interval: 4000,
+      interval: 3000,
       teamInfo: [],
       checked: -1
     }

@@ -9,15 +9,17 @@ import infiniteScroll from 'vue-infinite-scroll'
 import {currency} from './util/currency'
 import {toDate} from './util/toDate'
 import {simpleDate} from './util/simpleDate'
+import * as filters from './util/timeAgoFilter'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 
 Vue.filter('currency',currency);
 Vue.filter('toDate',toDate);
-Vue.filter('simpleDate', simpleDate)
-Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue.filter('simpleDate', simpleDate);
+Vue.filter('timeAgo', filters.timeAgo);
+Vue.config.productionTip = false;
+Vue.use(ElementUI);
 Vue.use(VueLazyLoad,{
   loading: "/static/loading-svg/loading-bars.svg"
 });

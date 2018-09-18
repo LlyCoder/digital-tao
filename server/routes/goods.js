@@ -23,7 +23,7 @@ router.get('/list', function (req,res,next) {
   var skip = (page-1) * pageSize;
   var priceGt = '';
   var priceLte = '';
-  var params = {};
+  var params = { status: 'pass'};
   if(priceLevel != 'all') {
     switch (priceLevel) {
       case '0': priceGt = 0;priceLte=100;break;
@@ -35,7 +35,8 @@ router.get('/list', function (req,res,next) {
       salePrice: {
         $gt: priceGt,
         $lte: priceLte
-      }
+      },
+      status: 'pass' 
     }
   }
 
@@ -127,10 +128,8 @@ router.post("/addCart", function (req,res,next) {
                   });
                 }
               }
-              //添加商品逻辑结束
           });
         }
-
       }
     }
   });

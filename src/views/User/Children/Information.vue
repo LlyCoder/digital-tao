@@ -37,7 +37,7 @@
               <el-button type="primary" round @click="updateUserName">修改</el-button>
             </div>
             <div class="pwd_edit_container">
-              <el-input placeholder="" v-model="newUserPwd">
+              <el-input placeholder="" v-model="newUserPwd" type="password">
                 <template slot="prepend">新密码：</template>
               </el-input>
               <el-button type="primary" round @click="updatePwd">修改</el-button>

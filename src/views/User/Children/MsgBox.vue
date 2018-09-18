@@ -45,11 +45,12 @@ export default {
         }
     },
     created() {
-        console.log(this.userInfo);
-        this.init();
+        // console.log(this.userInfo);
+        // setInterval(this.init(),500);
     },
     mounted() {
-        
+        this.init();
+        setInterval(() => this.init(), 500);
     },
     methods: {
         init() {
@@ -75,7 +76,8 @@ export default {
             }).then(result => {
                 let res = result.data;
                 if(res.status == '0') {
-                    this.init()
+                    this.init();
+                    this.reply = "";
                 }
             }) 
         }

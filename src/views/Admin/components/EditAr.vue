@@ -21,7 +21,7 @@
                 </el-form-item>
             </el-form>
             <div class="upload_btn">
-                <el-button type="primary" round @click="updateArticle">从新发布</el-button>
+                <el-button type="primary" round @click="updateArticle">发布</el-button>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                 if (this.editorContent == '') {
                     this.editorContent = this.lastContent;
                 }
-                axios.post('/articles/updateArticle', {
+                axios.post('/admins/updateArticle', {
                     articleId,
                     articleTitle: this.articleTitle,
                     articleImg: this.articleImg,
@@ -68,7 +68,7 @@
                     if (res.status == '0') {
                         this.$message({
                             showClose: true,
-                            message: '恭喜你，发布成功',
+                            message: '发布成功',
                             type: 'success'
                         });
                         this.$router.push('editArticle');

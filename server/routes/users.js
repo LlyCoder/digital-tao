@@ -95,7 +95,7 @@ router.post("/logout", function(req, res, next) {
   });
 });
 
-//用户注册接口   by lly
+//用户注册接口 
 router.post('/register', function(req, res, next) {
   let nickName = req.body.newUserNickName;
   let userId = req.body.newUserId;
@@ -1060,9 +1060,11 @@ router.post('/updateGoods/:gid', confirmLogin, (req,res,next) => {
         salePrice = req.body.salePrice,
         productImage = req.body.productImage,
         sellerIntro = req.body.sellerIntro,
+        updateDate = Date(),
+        status = 'untreated';
         previewImg = req.body.previewImg;
   if(previewImg.length == 0) {
-    Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro }, (err, result) => {
+    Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro, updateDate,  status}, (err, result) => {
       if (err) {
         console.log(err)
       } else {
@@ -1073,7 +1075,7 @@ router.post('/updateGoods/:gid', confirmLogin, (req,res,next) => {
       }
     })
   }else {
-    Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro, previewImg}, (err, result) => {
+    Goods.findOneAndUpdate({ productId: gid }, { owner, productName, salePrice, productImage, sellerIntro, updateDate, previewImg}, (err, result) => {
       if (err) {
         console.log(err)
       } else {
@@ -1084,7 +1086,6 @@ router.post('/updateGoods/:gid', confirmLogin, (req,res,next) => {
       }
     })
   }
- 
 })
 
 router.get('/test', (req,res) => {

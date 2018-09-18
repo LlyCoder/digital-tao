@@ -158,8 +158,10 @@ router.post('/updateArticle', confirmLogin, (req,res) => {
       articleTitle = req.body.articleTitle,
       abstract = req.body.abstract,
       articleImg = req.body.articleImg,
-      content = req.body.content;
-  Articles.findOneAndUpdate({ _id: articleId }, {articleTitle, abstract, articleImg, content}, (err,doc) => {
+      content = req.body.content,
+      updateDate = Date(),
+      status = 'untreated';
+  Articles.findOneAndUpdate({ _id: articleId }, { articleTitle, abstract, articleImg, content, updateDate, status}, (err,doc) => {
     if(err) {
       console.log(err)
     } else {

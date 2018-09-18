@@ -40,10 +40,11 @@
             ...mapState(['userInfo'])
         },
         created() {
-            this.init();
+            // setInterval(this.init(), 500);
         },
         mounted() {
-
+            this.init();
+            setInterval(() => this.init(), 500);
         },
         methods: {
             init() {
@@ -69,7 +70,8 @@
                 }).then(result => {
                     let res = result.data;
                     if (res.status == '0') {
-                        this.init()
+                        this.init();
+                        this.reply = "";
                     }
                 })
             }

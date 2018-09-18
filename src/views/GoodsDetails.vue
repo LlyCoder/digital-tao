@@ -19,17 +19,17 @@
           <h3>{{productInfo.productName}}</h3>
         </div>
         <div class="proIntro">
-          <div>发布者：{{productInfo.owner.userName}}</div>
-          <div>发布时间：{{productInfo.publishDate | toDate}}</div>
+          <div><span class="gextil">发布者: </span><span class="pubhre" @click="leaveMsg">{{productInfo.owner.userName}}</span></div>
+          <div style="margin-top: 3px;"><span class="gextil">发布时间：</span>{{productInfo.publishDate | toDate}}</div>
         </div>
         <div class="sellerIntro">
-          <span>卖家简述：</span>
+          <span class="gextil">卖家简述：</span>
           <span>
             {{productInfo.sellerIntro}}
           </span>
         </div>
         <div class="proPrice">
-          <span>价格：</span> <span>￥ {{productInfo.salePrice}}</span>
+          <span class="gextil">价格：</span> <span>￥ {{productInfo.salePrice}}</span>
         </div>
         <div class="pro_operation">
           <el-button type="danger" plain @click="leaveMsg">给卖家留言</el-button>
@@ -283,6 +283,20 @@ margin: 0 auto;
   margin-top: .2rem;
   float: right;
   background: #f56c6c;
+}
+.gextil {
+  color: #f56c6c;
+  font-weight: 700;
+  font-size: 16px;
+}
+.pubhre {
+  font-size: 15px;
+  color:  #187cf7;
+  cursor: pointer;
+}
+.pubhre:hover {
+  text-decoration: underline;
+  color: #aebed2;
 }
 
 </style>

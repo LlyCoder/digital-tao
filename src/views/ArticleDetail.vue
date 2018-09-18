@@ -8,8 +8,9 @@
                 <div class="article_box">
                     <div class="title"><h2>{{article.articleTitle}}</h2></div>
                     <div class="ar_info">
-                        <div><span class="fa fa-user-circle"></span>  {{article.publisher.userName}}</div>
+                        <div><span class="fa fa-user-circle"></span>  {{article.publisher.userName}}</div> &nbsp;&nbsp;
                         <div><span class="fa fa-clock-o"></span>  {{article.publishDate | toDate}}</div>
+                        <div><span class="fa fa-pencil-square-o"></span> {{article.updateDate | timeAgo}}</div>
                     </div>
                     <div class="ar_content" v-html="article.content"></div>
                     <div class="like_box">

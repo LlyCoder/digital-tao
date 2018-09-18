@@ -37,7 +37,7 @@
                         </el-dialog>
                     </el-form-item>
                 </el-form>
-                <el-button type="primary" round @click="updatehGoods">重新发布</el-button>
+                <el-button type="primary" round @click="updatehGoods">重新提交</el-button>
                 <!-- <el-button type="primary" round @click="test">测试</el-button> -->
             </div>
         </div>
@@ -123,9 +123,10 @@
                     let res = result.data;
                     if(res.status == '0') {
                         this.$message({
-                            message: '重新发布成功！',
+                            message: '提交申请成功，等待管理员审核！',
                             type: 'success'
                         });
+                        this.$router.push({ path: '/user/mySale' });
                     }
                 })
             },
